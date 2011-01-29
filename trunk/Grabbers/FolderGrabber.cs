@@ -14,9 +14,8 @@ namespace ComicGrabber.Grabbers
    {
       #region Constructors
 
-      public FolderGrabber(string path)
+      public FolderGrabber()
       {
-         FolderPath = path;
          DisableCaching = true;
          RetryCount = 0;
       }
@@ -25,7 +24,7 @@ namespace ComicGrabber.Grabbers
 
       #region Public properties and indexers
 
-      public string FolderPath { get; private set; }
+      public string FolderPath { get; set; }
 
       #endregion
 

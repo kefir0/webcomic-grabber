@@ -9,7 +9,7 @@ using ComicGrabber.Models;
 
 namespace ComicGrabber.Grabbers
 {
-   internal class XkcdGrabber : TaskParallelGrabber
+   public class XkcdGrabber : TaskParallelGrabber
    {
       #region Fields and Constants
 
