@@ -1,6 +1,7 @@
 ﻿#region Usings
 
 using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Linq;
@@ -84,7 +85,7 @@ namespace ComicGrabber.Models
                                             }
                                             finally
                                             {
-                                               _dispatcher.BeginInvoke((Action) (() => { IsExporting = false; }));
+                                               IsExporting = false;
                                             }
                                          });
       }
@@ -106,16 +107,15 @@ namespace ComicGrabber.Models
          //var grabber = new CyanideGrabber();
          //var grabber = new WtdGrabber();
 
-         var lastComicNum = grabber.GetCount();
-         _dispatcher.BeginInvoke((Action) (() => { MaxProgress = lastComicNum; }));
+         MaxProgress = grabber.GetCount();
 
          foreach (var comic in grabber.GetComics())
          {
             var c = comic;
-            _dispatcher.BeginInvoke((Action) (() => Comics.Add(c)), DispatcherPriority.ApplicationIdle);
+            _dispatcher.Invoke((Action) (() => Comics.Add(c)), DispatcherPriority.ApplicationIdle);
          }
 
-         _dispatcher.BeginInvoke((Action) (() => { MaxProgress = Comics.Count; })); // Show completed progressbar.
+         MaxProgress = Comics.Count;  // Show completed progressbar.
          Export();
       }
 
