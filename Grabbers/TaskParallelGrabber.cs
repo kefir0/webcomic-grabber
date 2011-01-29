@@ -11,12 +11,10 @@ using ComicGrabber.Models;
 
 #endregion
 
-
 namespace ComicGrabber.Grabbers
 {
    public abstract class TaskParallelGrabber : IGrabber
    {
-
       #region IGrabber implementation
 
       public abstract int GetCount();
@@ -36,6 +34,14 @@ namespace ComicGrabber.Grabbers
 
       #endregion
 
+      #region Public methods
+
+      public override string ToString()
+      {
+         return GetType().Name;
+      }
+
+      #endregion
 
       #region Private and protected properties and indexers
 
@@ -43,7 +49,6 @@ namespace ComicGrabber.Grabbers
       protected bool DisableCaching { get; set; }
 
       #endregion
-
 
       #region Private and protected methods
 
@@ -59,7 +64,7 @@ namespace ComicGrabber.Grabbers
                                              }
                                              catch
                                              {
-                                                continue;  // See about task exception handling: http://msdn.microsoft.com/en-us/library/dd997415.aspx
+                                                continue; // See about task exception handling: http://msdn.microsoft.com/en-us/library/dd997415.aspx
                                              }
                                           }
                                           return null;
@@ -76,20 +81,20 @@ namespace ComicGrabber.Grabbers
          var f = IsolatedStorageFile.GetMachineStoreForAssembly();
          var fileName = GetType().FullName + index; // Use current grabber type plus index as a caching key
 
-         if (f.FileExists(fileName))  // Return from cache
+         if (f.FileExists(fileName)) // Return from cache
          {
-            using (var stream = f.OpenFile(fileName,FileMode.Open))
+            using (var stream = f.OpenFile(fileName, FileMode.Open))
             {
-               return new DataContractSerializer(typeof(Comic)).ReadObjectSafe(stream) as Comic;
+               return new DataContractSerializer(typeof (Comic)).ReadObjectSafe(stream) as Comic;
             }
          }
 
-         var comic = GetComicByIndex(index);  // Download and cache
+         var comic = GetComicByIndex(index); // Download and cache
          using (var stream = f.OpenFile(fileName, FileMode.Create))
          {
             if (comic != null)
             {
-               new DataContractSerializer(typeof(Comic)).WriteObject(stream, comic);
+               new DataContractSerializer(typeof (Comic)).WriteObject(stream, comic);
             }
          }
 

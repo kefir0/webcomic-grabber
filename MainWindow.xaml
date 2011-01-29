@@ -56,12 +56,13 @@
         </ListView>
 
         <DockPanel Grid.Row="2">
-            <Button DockPanel.Dock="Left" Margin="5" Click="Button_Click" Width="150">
+            <Button DockPanel.Dock="Right" Margin="5" Click="Button_Click" Width="150">
                 <Grid>
                     <TextBlock Text="Write PDF" VerticalAlignment="Center" HorizontalAlignment="Center" />
                     <ProgressBar IsIndeterminate="True" Visibility="{Binding IsExporting, Converter={StaticResource _booleanToVisibilityConverter}}" />
                 </Grid>
             </Button>
+            <!--<ComboBox DockPanel.Dock="Left" Margin="5" ItemsSource="{Binding Grabbers}" SelectedItem="{Binding SelectedGrabber, Mode=TwoWay}"  />-->
             <ProgressBar Minimum="0" Maximum="{Binding MaxProgress, Mode=OneWay}" Value="{Binding Comics.Count, Mode=OneWay}" Margin="5" 
                      IsIndeterminate="{Binding MaxProgress, Converter={StaticResource _numberToBooleanConverter}, ConverterParameter=invert}" />
         </DockPanel>
