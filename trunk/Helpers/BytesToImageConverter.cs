@@ -23,6 +23,7 @@ namespace ComicGrabber.Helpers
          bmp.BeginInit();
          bmp.StreamSource = new MemoryStream(bytes);
          bmp.EndInit();
+         bmp.Freeze();
          return bmp;
       }
 

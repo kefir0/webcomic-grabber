@@ -39,7 +39,7 @@ namespace ComicGrabber.Models
                if (string.IsNullOrEmpty(comic.Title) && string.IsNullOrEmpty(comic.Description))
                {
                   // No text - fill the document
-                  image.ScaleToFit(document.PageSize.Width - margin*2, document.PageSize.Height - margin*2);
+                  image.ScaleToFit(document.PageSize.Width - margin*2, document.PageSize.Height - margin*2 - 20);
                   document.Add(image);
                }
                else
@@ -56,8 +56,8 @@ namespace ComicGrabber.Models
 
                   document.Add(image);
                   document.Add(new Phrase(comic.Description, altFont));
+                  document.Add(Chunk.NEXTPAGE);
                }
-               document.Add(Chunk.NEXTPAGE);
             }
          }
          catch
