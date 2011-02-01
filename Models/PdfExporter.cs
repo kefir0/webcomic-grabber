@@ -20,11 +20,16 @@ namespace ComicGrabber.Models
          const float margin = 5;
          const float textSize = 16;
          var document = new Document(PageSize.LETTER, margin, margin, margin, margin);
-         var titleFont = new Font(Font.FontFamily.TIMES_ROMAN, textSize + 2, Font.BOLD);
-         var altFont = new Font(Font.FontFamily.TIMES_ROMAN, textSize, Font.ITALIC);
+
+         // Support for cyrillic charset. Path looks bad, need to find out how to improve.
+         //var baseFont = BaseFont.CreateFont(@"C:\Windows\Fonts\times.ttf", System.Text.Encoding.GetEncoding(1251).BodyName, true);
+         var baseFont = Font.FontFamily.TIMES_ROMAN;
+         var titleFont = new Font(baseFont, textSize + 2, Font.BOLD);
+         var altFont = new Font(baseFont, textSize, Font.ITALIC);
 
          try
          {
+            File.Delete(fileName);
             var wri = PdfWriter.GetInstance(document, new FileStream(fileName, FileMode.Create));
 
             //Open Document to write
