@@ -41,6 +41,8 @@ namespace ComicGrabber.Models
       }
 
       public BitmapImage Thumbnail { get; private set; }
+      
+      public float RotationDegrees { get; set; }
 
       [DataMember]
       public string Title { get; set; }

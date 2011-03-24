@@ -40,6 +40,7 @@ namespace ComicGrabber.Models
             foreach (var comic in comics.OrderBy(c => c.Index).ToList())
             {
                var image = Image.GetInstance(new MemoryStream(comic.ImageBytes));
+               image.RotationDegrees = comic.RotationDegrees;
 
                if (string.IsNullOrEmpty(comic.Title) && string.IsNullOrEmpty(comic.Description))
                {

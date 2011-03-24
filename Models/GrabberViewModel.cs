@@ -102,10 +102,11 @@ namespace ComicGrabber.Models
 
       private void DoGrabbing()
       {
-         var grabber = new BrainlessTalesGrabber();
+         //var grabber = new XkcdGrabber();
+         //var grabber = new BrainlessTalesGrabber();
          //var grabber = new FolderGrabber(@"D:\Photo\Bike\2008-03-07 Zavod\proc");
          //var grabber = new CyanideGrabber();
-         //var grabber = new WtdGrabber();
+         var grabber = new WtdGrabber();
 
          MaxProgress = grabber.GetCount();
 

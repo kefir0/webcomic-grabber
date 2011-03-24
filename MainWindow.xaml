@@ -63,6 +63,7 @@
                 </Grid>
             </Button>
             <!--<ComboBox DockPanel.Dock="Left" Margin="5" ItemsSource="{Binding Grabbers}" SelectedItem="{Binding SelectedGrabber, Mode=TwoWay}"  />-->
+            <Button DockPanel.Dock="Left" Content="Clear Cache" Width="100" Click="ClearCacheButton_Click" Margin="5" />
             <ProgressBar Minimum="0" Maximum="{Binding MaxProgress, Mode=OneWay}" Value="{Binding Comics.Count, Mode=OneWay}" Margin="5" 
                      IsIndeterminate="{Binding MaxProgress, Converter={StaticResource _numberToBooleanConverter}, ConverterParameter=invert}" />
         </DockPanel>
