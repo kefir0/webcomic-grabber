@@ -51,13 +51,20 @@ namespace ComicGrabber.Grabbers
 
          // Download picture
          var imageStream = WebRequest.Create(comicInfo.img).GetResponse().GetResponseStream().ToMemoryStream();
-         var comic = Comic.Create(imageStream.GetBuffer());		 
-		 if (comic == null) return null;
-		 
+         var comic = Comic.Create(imageStream.GetBuffer());
+         if (comic == null) return null;
+
          comic.Description = comicInfo.alt;
          comic.Url = comicInfo.link;
          comic.Index = index + 1;
          comic.Title = comicInfo.title;
+
+         // Auto-rotate for best fit
+         var t = comic.Thumbnail;
+         if (t.Width > t.Height)
+         {
+            comic.RotationDegrees = 90;
+         }
 
          return comic;
       }
