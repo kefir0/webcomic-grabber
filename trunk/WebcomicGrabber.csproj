@@ -59,6 +59,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Grabbers\BrainlessTalesGrabber.cs" />
     <Compile Include="Grabbers\RuXkcdGrabber.cs" />
     <Compile Include="Grabbers\WtdGrabber.cs" />
     <Compile Include="Grabbers\FolderGrabber.cs" />

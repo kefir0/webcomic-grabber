@@ -11,6 +11,7 @@ using ComicGrabber.Models;
 
 #endregion
 
+
 namespace ComicGrabber.Grabbers
 {
    public abstract class TaskParallelGrabber : IGrabber
@@ -34,6 +35,7 @@ namespace ComicGrabber.Grabbers
 
       #endregion
 
+
       #region Public methods
 
       public override string ToString()
@@ -41,7 +43,20 @@ namespace ComicGrabber.Grabbers
          return GetType().Name;
       }
 
+
+      /// <summary>
+      /// Clears the isolated storage cache.
+      /// </summary>
+      public static void ClearCache()
+      {
+         foreach (var fileName in IsolatedStorageFile.GetMachineStoreForAssembly().GetFileNames())
+         {
+            IsolatedStorageFile.GetMachineStoreForAssembly().DeleteFile(fileName);
+         }
+      }
+
       #endregion
+
 
       #region Private and protected properties and indexers
 
@@ -49,6 +64,7 @@ namespace ComicGrabber.Grabbers
       protected bool DisableCaching { get; set; }
 
       #endregion
+
 
       #region Private and protected methods
 
@@ -75,6 +91,7 @@ namespace ComicGrabber.Grabbers
 
 
       protected abstract Comic GetComicByIndex(int index);
+
 
       private Comic GetCachedComicByIndex(int index)
       {
