@@ -47,6 +47,7 @@ namespace ComicGrabber.Grabbers
             if (comic != null)
             {
                comic.Index = comicIndex;
+               comic.RotationDegrees = 90;
                return comic;
             }
 
