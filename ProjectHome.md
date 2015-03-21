@@ -1,0 +1,1 @@
+Allows downloading, viewing and pdf exporting of popular webcomics such as xkcd, Wtd, Cyanide and Happiness, and others.
